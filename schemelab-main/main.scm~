@@ -1,0 +1,50 @@
+(define entry
+  (lambda (bst)
+    (cond
+     [(null? bst) #f]
+     [(not (= 3 (length bst))) #f]
+     [(not (list? (car (cdr bst)))) #f]
+     [(not (list? (car (cdr (cdr bst))))) #f]
+     (else (car bst)))))
+
+;; left
+(define left
+  (lambda (bst)
+    (cond
+     [(null? bst) #f]
+     [(not (= 3 (length bst))) #f]
+     [(not (list? (car (cdr bst)))) #f]
+     [(not (list? (car (cdr (cdr bst))))) #f]
+     (else (car ( cdr bst))))))
+
+;; right
+(define right
+  (lambda (bst)
+    (cond
+     [(null? bst) #f]
+     [(not (= 3 (length bst))) #f]
+     [(not (list? (car (cdr bst)))) #f]
+(entry '(5 () ()))      [(not (list? (car (cdr (cdr bst))))) #f]
+     (else (car ( cdr ( cdr bst)))))))
+
+;; make-bst    
+(define make-bst
+  (lambda (elt left-bst right-bst)
+    (cond [(not (integer? elt)) #f]
+	  [(and (equal? (entry left-bst) #f) (not (equal? left-bst '()))) #f]
+	  [(and (equal? (entry right-bst) #f) (not (equal? right-bst '()))) #f]
+	  [else (list elt left-bst right-bst)])))
+
+;;preorder
+;;preorder
+(define preorder
+  (lambda (bst)
+    (cond [(equal? (entry bst) #f) '()]
+          [(and (equal? (left bst) #f) (equal? (right bst) #f)) (entry bst)]
+	  [(equal? (left bst) #f) (list (entry bst) (preorder (right bst)))]
+	  [(equal? (right bst) #f) (list (entry bst) (preorder (left bst)))]
+	  [else (list (entry bst) (preorder (left bst)) (preorder (right bst)))])))
+
+
+
+
